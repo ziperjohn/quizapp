@@ -1,5 +1,3 @@
-import 'dart:js';
-
 import 'package:quizapp/about/about.dart';
 import 'package:quizapp/home/home.dart';
 import 'package:quizapp/login/login.dart';
