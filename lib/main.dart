@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:provider/provider.dart';
+import 'package:quizapp/models/models.dart';
 import 'package:quizapp/routes.dart';
+import 'package:quizapp/services/firestore.dart';
+import 'package:quizapp/shared/loading_indicator.dart';
 import 'package:quizapp/theme.dart';
 
 void main() {
@@ -38,15 +42,19 @@ class _AppState extends State<App> {
 
         // Once complete, show your application
         if (snapshot.connectionState == ConnectionState.done) {
-          return MaterialApp(
-            debugShowCheckedModeBanner: false,
-            routes: appRoutes,
-            theme: appTheme,
+          return StreamProvider(
+            create: (_) => FirestoreService().streamReport(),
+            initialData: Report(),
+            child: MaterialApp(
+              debugShowCheckedModeBanner: false,
+              routes: appRoutes,
+              theme: appTheme,
+            ),
           );
         }
 
         // Otherwise, show something whilst waiting for initialization to complete
-        return const Text('loading');
+        return const LoadingScreen();
       },
     );
   }
