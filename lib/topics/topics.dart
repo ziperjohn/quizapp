@@ -4,6 +4,8 @@ import 'package:quizapp/services/firestore.dart';
 import 'package:quizapp/shared/bottom_nav.dart';
 import 'package:quizapp/shared/error_message.dart';
 import 'package:quizapp/shared/loading_indicator.dart';
+import 'package:quizapp/topics/drawer.dart';
+import 'package:quizapp/topics/topic_item.dart';
 
 class TopicsScreen extends StatelessWidget {
   const TopicsScreen({Key? key}) : super(key: key);
@@ -27,12 +29,14 @@ class TopicsScreen extends StatelessWidget {
                 title: const Text("Topics"),
                 centerTitle: true,
               ),
+              drawer: TopicDrawer(topics: topics),
               body: GridView.count(
                 crossAxisCount: 2,
                 primary: false,
                 padding: const EdgeInsets.all(20),
                 crossAxisSpacing: 10,
-                children: topics.map((topic) => Text(topic.title)).toList(),
+                children:
+                    topics.map((topic) => TopicItem(topic: topic)).toList(),
               ),
               bottomNavigationBar: const BottomNavBar(),
             );
