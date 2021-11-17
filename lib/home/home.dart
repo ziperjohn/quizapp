@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:quizapp/login/login.dart';
 import 'package:quizapp/services/auth.dart';
-import 'package:quizapp/shared/bottom_nav.dart';
 import 'package:quizapp/topics/topics.dart';
 
 class HomeScreen extends StatelessWidget {
