@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:quizapp/models/models.dart';
+import 'package:quizapp/topics/drawer.dart';
 
 class TopicDetail extends StatelessWidget {
   final Topic topic;
@@ -27,7 +28,8 @@ class TopicDetail extends StatelessWidget {
               fontSize: 20,
               fontWeight: FontWeight.bold,
             ),
-          )
+          ),
+          QuizList(topic: topic),
         ],
       ),
     );

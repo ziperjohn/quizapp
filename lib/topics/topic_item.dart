@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:quizapp/models/models.dart';
+import 'package:quizapp/shared/progress_bar.dart';
 import 'package:quizapp/topics/topic_detail.dart';
 
 class TopicItem extends StatelessWidget {
@@ -21,6 +22,7 @@ class TopicItem extends StatelessWidget {
             );
           },
           child: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Flexible(
                 flex: 3,
@@ -32,18 +34,22 @@ class TopicItem extends StatelessWidget {
                 ),
               ),
               Flexible(
-                  child: Padding(
-                padding: EdgeInsets.only(left: 10, right: 10),
-                child: Text(
-                  topic.title,
-                  style: const TextStyle(
-                    height: 1.5,
-                    fontWeight: FontWeight.bold,
+                child: Padding(
+                  padding: const EdgeInsets.only(left: 10, right: 10),
+                  child: Text(
+                    topic.title,
+                    style: const TextStyle(
+                      height: 1.5,
+                      fontWeight: FontWeight.bold,
+                    ),
+                    overflow: TextOverflow.fade,
+                    softWrap: false,
                   ),
-                  overflow: TextOverflow.fade,
-                  softWrap: false,
                 ),
-              ))
+              ),
+              Flexible(
+                child: TopicProgress(topic: topic),
+              )
             ],
           ),
         ),
