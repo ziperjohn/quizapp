@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:quizapp/login/login.dart';
 import 'package:quizapp/services/auth.dart';
+import 'package:quizapp/shared/loading_indicator.dart';
 import 'package:quizapp/topics/topics.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -13,7 +14,7 @@ class HomeScreen extends StatelessWidget {
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.waiting) {
           return const Center(
-            child: Text("Loading..."),
+            child: LoadingScreen(),
           );
         } else if (snapshot.hasError) {
           return const Center(

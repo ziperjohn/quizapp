@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:provider/provider.dart';
 import 'package:quizapp/models/models.dart';
-import 'package:quizapp/quiz/quiz_state.dart';
 import 'package:quizapp/services/firestore.dart';
 
 class CongratsPage extends StatelessWidget {
@@ -11,7 +9,6 @@ class CongratsPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var state = Provider.of<QuizState>(context);
     return Container(
       padding: const EdgeInsets.all(8),
       child: Column(

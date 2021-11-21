@@ -4,6 +4,7 @@ import 'package:provider/provider.dart';
 import 'package:quizapp/models/models.dart';
 import 'package:quizapp/routes.dart';
 import 'package:quizapp/services/firestore.dart';
+import 'package:quizapp/shared/error_message.dart';
 import 'package:quizapp/shared/loading_indicator.dart';
 import 'package:quizapp/theme.dart';
 
@@ -37,7 +38,8 @@ class _AppState extends State<App> {
       builder: (context, snapshot) {
         // Check for errors
         if (snapshot.hasError) {
-          return const Text('error');
+          return MaterialApp(
+              home: ErrorScreen(message: snapshot.error.toString()));
         }
 
         // Once complete, show your application
@@ -54,7 +56,7 @@ class _AppState extends State<App> {
         }
 
         // Otherwise, show something whilst waiting for initialization to complete
-        return const LoadingScreen();
+        return const MaterialApp(home: LoadingScreen());
       },
     );
   }
