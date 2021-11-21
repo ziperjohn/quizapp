@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:provider/provider.dart';
 import 'package:quizapp/models/models.dart';
+import 'package:quizapp/quiz/quiz.dart';
 
 class TopicDrawer extends StatelessWidget {
   final List<Topic> topics;
@@ -50,7 +52,14 @@ class QuizList extends StatelessWidget {
           elevation: 4,
           margin: const EdgeInsets.all(4),
           child: InkWell(
-            onTap: () {},
+            onTap: () {
+              Navigator.of(context).push(
+                MaterialPageRoute(
+                  builder: (BuildContext context) =>
+                      QuizScreen(quizId: quiz.id),
+                ),
+              );
+            },
             child: Container(
               padding: const EdgeInsets.all(8),
               child: ListTile(
@@ -58,7 +67,7 @@ class QuizList extends StatelessWidget {
                   quiz.title,
                 ),
                 subtitle: Text(quiz.description),
-                // leading: QuizBadge(topic: topic, quizId: quiz.id),
+                leading: QuizBadge(topic: topic, quizId: quiz.id),
               ),
             ),
           ),
@@ -68,16 +77,21 @@ class QuizList extends StatelessWidget {
   }
 }
 
-// class QuizBadge extends StatelessWidget {
-//   final Topic topic;
-//   final String quizId;
-//   const QuizBadge({Key? key, required this.topic, required this.quizId})
-//       : super(key: key);
+class QuizBadge extends StatelessWidget {
+  final Topic topic;
+  final String quizId;
+  const QuizBadge({Key? key, required this.topic, required this.quizId})
+      : super(key: key);
 
-//   @override
-//   Widget build(BuildContext context) {
-//     // Report report = Provider.of<Report>(context);
+  @override
+  Widget build(BuildContext context) {
+    Report report = Provider.of<Report>(context);
+    List completed = report.topics[topic.id] ?? [];
 
-//     return Container();
-//   }
-// }
+    if (completed.contains(quizId)) {
+      return const Icon(FontAwesomeIcons.checkDouble, color: Colors.green);
+    } else {
+      return const Icon(FontAwesomeIcons.solidCircle, color: Colors.grey);
+    }
+  }
+}
